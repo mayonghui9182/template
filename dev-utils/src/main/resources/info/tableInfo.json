@@ -1,0 +1,9 @@
+[
+  {
+    "tableName": "base_table",
+    "author": "mayh",
+    "desc": "测试表",
+    "packageName": "cn.net.mayh.indicator",
+    "path": "E:\\code\\test\\indicator-manager-service\\src\\main\\java\\cn\\net\\mayh\\indicator"
+  }
+]

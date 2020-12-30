@@ -1,0 +1,108 @@
+#security:
+#  user:
+#    password: admin
+#    name: admin
+#  basic:
+#    enabled: false
+#
+eureka:
+  environment: dev
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://10.152.24.175:8090/eureka/
+#
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: true
+#  boot:
+#    admin:
+#      url: http://localhost:8082/bootadmin
+#
+## 所有运维支持类的 Rest 访问统一到 admin 路径下。
+#management:
+#  context-path: /admin
+#  security:
+#    enabled: false
+#    roles: SUPERUSERikfa
+#
+#spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS: false
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000000
+## 设置 hystrix.shareSecurityContext 属性为true。设置这个值会自动配置一个Hystrix兵法策略会把securityContext从主线程传输到你使用的Hystrix command
+#hystrix.shareSecurityContext: true
+#
+#
+logging.level:
+    com.taikang: DEBUG
+    org.hibernate: DEBUG
+#logging:
+#  file: "target/sys-manager-service.log"
+#
+ikfa:
+  file-upload:
+   path: E:/work/sys_project/sys-manege-new/sys-manager/sys-admin-pages/
+  refresh:
+   resource:
+     cron: 0 0/30 *  * * ?
+  security:
+    authentication:
+      appCode: INFO_DISCLOSURE
+      path: /login
+      refresh: /refresh/token
+      # 生产环境应当适当裁剪
+      permiturl: /, /*.html, /favicon.ico, /**/*.html, /**/*.css, /**/*.js,/refresh/token,/h2-console,/api/v1/login,/getVlidateCode
+      jwt:
+        iss: taikang
+        header: token
+        secret: my-secret-token-to-change-in-production
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000
+    swagger-ui:
+      test:
+        # 是否开启swagger-ui页面测试功能  ture 开启，false 关闭 生产环境应该关闭
+        enable: false
+        # 开启swagger-ui页面测试功能时模拟的 token
+        #mocktoken: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXNhZG1pbiIsImF1ZCI6IndlYiIsImF1dGgiOiJhZG1pbixtYWluaW5kZXg6bWFpbmluZGV4MTphZGQsc3lzdGVtOnVzZXI6YWRkLHN5c3RlbTp1c2VyOmVkaXQsc3lzdGVtOnVzZXI6ZGVsLHN5c3RlbTp1c2VyOnVzZXJyb2xlbWFuYWdlLHN5c3RlbTptZW51OmFkZCxzeXN0ZW06bWVudTplZGl0LHN5c3RlbTptZW51OmRlbCxzeXN0ZW06cm9sZTphZGQsc3lzdGVtOnJvbGU6ZWRpdCxzeXN0ZW06cm9sZTpkZWwsc3lzdGVtOnJvbGU6cm9sZW1lbnVtYW5hZ2UiLCJpc3MiOiJ0YWlrYW5nIiwiZXhwIjozMzE5NTk0Nzk1LCJ1c2VyIjoie1wiYWNjb3VudE5vbkV4cGlyZWRcIjp0cnVlLFwiYWNjb3VudE5vbkxvY2tlZFwiOnRydWUsXCJhdXRob3JpdGllc1wiOlt7XCJhdXRob3JpdHlcIjpcImFkbWluXCJ9LHtcImF1dGhvcml0eVwiOlwibWFpbmluZGV4Om1haW5pbmRleDE6YWRkXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOnVzZXI6YWRkXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOnVzZXI6ZWRpdFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTp1c2VyOmRlbFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTp1c2VyOnVzZXJyb2xlbWFuYWdlXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOm1lbnU6YWRkXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOm1lbnU6ZWRpdFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTptZW51OmRlbFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTpyb2xlOmFkZFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTpyb2xlOmVkaXRcIn0se1wiYXV0aG9yaXR5XCI6XCJzeXN0ZW06cm9sZTpkZWxcIn0se1wiYXV0aG9yaXR5XCI6XCJzeXN0ZW06cm9sZTpyb2xlbWVudW1hbmFnZVwifV0sXCJjcmVkZW50aWFsc05vbkV4cGlyZWRcIjp0cnVlLFwiZW1haWxcIjpcIlwiLFwiZW5hYmxlZFwiOnRydWUsXCJpZFwiOlwiMTM1NFwiLFwicGFzc3dvcmRcIjpcIiQyYSQxMCQzM2hzVGp2UFcvcVQ1S2o0bFFlRVZ1aWEybHlFWFVBRjJzOThmQU5kLzVSaVBJd1lzN1VrS1wiLFwidWNvZGVcIjpcInN5c2FkbWluXCIsXCJ1aWRcIjpcIjEzNTRcIixcInVuYW1lXCI6XCJzeXNhZG1pblwiLFwidXNlcm5hbWVcIjpcInN5c2FkbWluXCJ9IiwiaWF0IjoxNTA3NzA4Mzk1fQ.ziuf_Hqp1eAMxLvJd3kTsA8sh9eo6c1tx4KOWImuH6DUkTh9uGErNCfRcsW5JPU56PAI_MtHdoEC-UOKu9A6Gg
+        mocktoken: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXVkIjoid2ViIiwiYXV0aCI6IjUiLCJpc3MiOiJ0YWlrYW5nIiwiZXhwIjoxNTU2MDk4NTM2LCJ1c2VyIjoie1wiYWNjb3VudE5vbkV4cGlyZWRcIjp0cnVlLFwiYWNjb3VudE5vbkxvY2tlZFwiOnRydWUsXCJhdXRob3JpdGllc1wiOlt7XCJhdXRob3JpdHlcIjpcIjVcIn1dLFwiY3JlZGVudGlhbHNOb25FeHBpcmVkXCI6dHJ1ZSxcImVtYWlsXCI6XCJsaWRvbmdAdGFpa2FuZ2xpZmUuY29tXCIsXCJlbmFibGVkXCI6dHJ1ZSxcImlkXCI6XCIxXCIsXCJwYXNzd29yZFwiOlwiZmJiMmI0MDhiNDZhZTcyOWY0ODk2ZjQxZjc5ZWM3NThcIixcInVjb2RlXCI6XCIxXCIsXCJ1aWRcIjpcIjFcIixcInVuYW1lXCI6XCJ0ZXN0XCIsXCJ1c2VybmFtZVwiOlwidGVzdFwifSIsImlhdCI6MTU1MzUwNjUzNn0.7_U9Q9o6JiOz8oqol-Ja8qDjH4fZv4XG_NkLC9Co_zjUr77k8DilIdchrbxpfeVzfeeAuUmdFFBSaLpyO4QKlA
+
+
+redis:
+  hostName: 10.130.209.11
+  password: taikang
+  port: 6379
+  maxWaitMillis: -1
+  lifo: true
+  minEvictableIdleTimeMillis: 1800000
+  testOnBorrow: true
+  testWhileIdle: true
+  timeBetweenEvictionRunsMillis: -1
+
+
+
+app:
+  jdbc_url: jdbc:mysql://192.168.1.102:3306/mayh?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+  jdbc_username: root
+  jdbc_password: mayh@123
+  jdbc_driverClass: com.mysql.jdbc.Driver
+  maxPoolPreparedStatementPerConnectionSize: 50
+  # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+  testOnBorrow: false
+  # 归还连接时执行validationQuery检测连接是否有效
+  testOnReturn: false
+  # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+  testWhileIdle: true
+  validationQuery: SELECT 1 FROM DUAL
+  initialSize: 30
+  maxActive:  100
+
+
+logging:
+  config: classpath:logs/logback-dev.xml
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <property name="logPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level ${springAppName:-}) %black(%X{X-B3-TraceId:-}) %boldMagenta(${PID:-}) %green(%thread %logger  %method  %line) -  %m%n"/>
+    <!-- 控制台输出日志 -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+    <!-- 日志输出 到文件-->
+    <appender name="File" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/occpuser/logs/info-disclosure/info-disclosure-%d{yyyy.MM.dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory><!--日志最大保存时间-->
+        </rollingPolicy>
+        <encoder>
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="File"/>
+    </root>
+    <logger level="debug" name="com.taikang" additivity="false">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="File"/>
+    </logger>
+</configuration>
