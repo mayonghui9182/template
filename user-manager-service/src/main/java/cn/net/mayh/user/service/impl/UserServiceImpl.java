@@ -1,9 +1,15 @@
 package cn.net.mayh.user.service.impl;
 
-import cn.net.mayh.user.service.UserService;
+
+import cn.net.mayh.user.bean.SysPermission;
+import cn.net.mayh.user.bean.SysUser;
+import cn.net.mayh.user.dao.IPermissionDao;
+import cn.net.mayh.user.dao.IUserDao;
+import cn.net.mayh.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -13,41 +19,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Description: 验证服务
- * @date 2021/1/1
- * @author  mayh
- **/
-@Service
-public class UserServiceImpl implements cn.net.mayh.user.service.IUserService {
+ * @author mayh
+ */
+@Service("userDetailsService")
+public class UserServiceImpl implements IUserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private IPermissionDao permissionDao;
     @Autowired
-    private PermissionMapper permissionMapper;
+    private IUserDao userDao;
 
     @Override
-    public User getByUsername(String username) {
-        return userMapper.getByUsername(username);
+    public SysUser getByUsername(String username) {
+        return userDao.getByUsername(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("自定义登录逻辑");
-        //从mysql查询用户
-        User user = getByUsername(username);
+        SysUser user = getByUsername(username);
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if(user != null){
-            List<Permission> permissions = permissionMapper.selectByUserId(user.getId());
-            //设置权限
+        if(user!=null){
+            List<SysPermission> permissions = permissionDao.selectByUserId(user.getId());
+
             permissions.forEach(permission -> {
                 if (permission!=null && !StringUtils.isEmpty(permission.getEnname())){
-                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getEnname());
+                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(permission.getUrl());
                     authorities.add(grantedAuthority);
                 }
             });
-            //authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            // 封装成UserDetails的实现类
-            return new org.springframework.security.core.userdetails.User(
+            return new User(
                     user.getUsername(),user.getPassword(),authorities);
         }else {
             throw new UsernameNotFoundException("用户名不存在");

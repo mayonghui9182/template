@@ -1,25 +1,24 @@
 package cn.net.mayh.user.service.impl;
 
-
-import com.luban.securtiyjdbc.bean.Permission;
-import com.luban.securtiyjdbc.mapper.PermissionMapper;
-import com.luban.securtiyjdbc.service.PermissionService;
+import cn.net.mayh.user.bean.SysPermission;
+import cn.net.mayh.user.dao.IPermissionDao;
+import cn.net.mayh.user.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * @author Fox
+ * @author mayh
  */
 @Service
 public class PermissionServiceImpl implements PermissionService {
 
     @Autowired
-    private PermissionMapper permissionMapper;
+    private IPermissionDao permissionDao;
     @Override
-    public List<Permission> selectByUserId(Long userId) {
+    public List<SysPermission> selectByUserId(Long userId) {
 
-        return permissionMapper.selectByUserId(userId);
+        return permissionDao.selectByUserId(userId);
     }
 }

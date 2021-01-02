@@ -1,4 +1,4 @@
-package cn.net.mayh.security;
+package cn.net.mayh.user.security;
 
 import com.taikang.sys.comm.AccessDeniedException;
 import com.taikang.sys.comm.ExceptionEnum;

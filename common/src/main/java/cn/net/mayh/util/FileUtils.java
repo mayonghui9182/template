@@ -1,7 +1,7 @@
 package cn.net.mayh.util;
 
 import cn.net.mayh.Constants;
-import cn.net.mayh.config.SystemConfig;
+import cn.net.mayh.gateway.config.SystemConfig;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

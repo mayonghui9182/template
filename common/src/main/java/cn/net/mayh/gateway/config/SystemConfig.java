@@ -1,4 +1,4 @@
-package cn.net.mayh.config;
+package cn.net.mayh.gateway.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

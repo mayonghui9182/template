@@ -1,4 +1,4 @@
-package cn.net.mayh.security;
+package cn.net.mayh.user.security;
 
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.authentication.AuthenticationManager;

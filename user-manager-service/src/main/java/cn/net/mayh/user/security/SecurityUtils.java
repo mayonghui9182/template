@@ -1,4 +1,4 @@
-package cn.net.mayh.security;
+package cn.net.mayh.user.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

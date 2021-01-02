@@ -3,5 +3,3 @@ spring:
     active:
 #      - autoTest
       - dev
-mybatis-plus:
-  configuration

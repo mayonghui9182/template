@@ -58,7 +58,7 @@ public class CodeGenerator {
         //加载表信息
         TableInfoLoader.loadTableInfo(tableInfo);
         //生成对象的信息
-        generator(conf, tableInfo, "mapper", "mapper-pfrs-" + tableInfo.getTableName() + "_mapper.xml");
+        generator(conf, tableInfo, "mapper", "dao-pfrs-" + tableInfo.getTableName() + "_mapper.xml");
         List<ColumnInfo> columnInfoList = tableInfo.getColumnInfoList();
         tableInfo.setColumnInfoList(columnInfoList.stream().filter(CodeGenerator::isBaseColumn).collect(Collectors.toList()));
         generator(conf, tableInfo, "po", tableInfo.getBeanName() + "PO.java");
@@ -125,7 +125,7 @@ public class CodeGenerator {
                 if(i == -1){
                     i = path.indexOf("/java/");
                 }
-                packge = path.substring(0,i) + "/resources/mapper/";
+                packge = path.substring(0,i) + "/resources/dao/";
                 break;
             }
             case "po": packge =  tableInfo.getPath()+"/po/";break;

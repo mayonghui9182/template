@@ -1,4 +1,4 @@
-package cn.net.mayh.security.jwt;
+package cn.net.mayh.user.security.jwt;
 
 import java.util.Arrays;
 import java.util.Collection;

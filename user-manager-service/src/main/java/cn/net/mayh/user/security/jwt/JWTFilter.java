@@ -1,24 +1,12 @@
-package cn.net.mayh.security.jwt;
-
-import java.io.IOException;
-import java.nio.file.AccessDeniedException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+package cn.net.mayh.user.security.jwt;
 
 import cn.net.mayh.Constants;
 import cn.net.mayh.exception.BizException;
 import cn.net.mayh.exception.ExceptionEnum;
-import cn.net.mayh.security.DomainUserDetailsService;
-import cn.net.mayh.security.JwtUser;
+import cn.net.mayh.user.security.DomainUserDetailsService;
+import cn.net.mayh.user.security.JwtUser;
 import cn.net.mayh.util.CommonUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,8 +14,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.PostConstruct;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * filter 拦截请求，获取用户、权限信息 Filter base class that aims to guarantee a single execution per request

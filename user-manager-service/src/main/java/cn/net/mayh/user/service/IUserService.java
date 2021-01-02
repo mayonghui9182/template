@@ -1,13 +1,12 @@
-package cn.net.mayh.user.ervice;
+package cn.net.mayh.user.service;
+
+import cn.net.mayh.user.bean.SysUser;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * Description:
- *
  * @author mayh
- * @version : 1.0
- * @date 2021/1/1
- **/
-public class IUserService {
-    User getByUsername(String username);
-}
+ */
+public interface IUserService extends UserDetailsService {
 
+    SysUser getByUsername(String username);
+}

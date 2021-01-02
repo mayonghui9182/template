@@ -1,5 +1,6 @@
 package cn.net.mayh.dto;
 
+import cn.net.mayh.exception.ExceptionEnum;
 import lombok.Data;
 
 /**
@@ -80,6 +81,28 @@ public class ResultDto<T> {
     public static <T> ResultDto<T> buildSuccess(String msg) {
         return new ResultDto<>(RESULT_SUCCES_CODE, msg);
     }
+
+
+    /**
+     * Description: 构建请求处理失败的返回对象，enum默认的错误代码和错误信息，不返回数据
+     * @date 2020/12/25
+     * return ResultDto: 返回对象
+     * @author mayonghui
+     **/
+    public static <T> ResultDto<T> buildFailed(ExceptionEnum exceptionEnum) {
+        return new ResultDto<>(exceptionEnum.getCode(), exceptionEnum.getMsg());
+    }
+
+    /**
+     * Description: 构建请求处理失败的返回对象，enum默认的错误代码，设置返回消息，不返回数据
+     * @date 2020/12/25
+     * return ResultDto: 返回对象
+     * @author mayonghui
+     **/
+    public static <T> ResultDto<T> buildFailed(ExceptionEnum exceptionEnum,String msg) {
+        return new ResultDto<>(exceptionEnum.getCode(), msg);
+    }
+
 
     /**
      * Description: 构建请求处理失败的返回对象，默认的失败代码，设置返回消息，不返回数据

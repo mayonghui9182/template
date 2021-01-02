@@ -1,4 +1,4 @@
-package cn.net.mayh.security;
+package cn.net.mayh.user.security;
 
 import java.io.IOException;
 import java.io.Serializable;
