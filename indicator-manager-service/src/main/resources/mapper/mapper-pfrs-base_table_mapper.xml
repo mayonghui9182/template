@@ -5,7 +5,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.net.mayh.indicator.dao.IBaseTableDao">
-    <resultMap id="baseTableResult" type="cn.net.mayh.indicator.po.BaseTablePO">
+    <resultMap id="baseTableResult" type="cn.net.mayh.indicator.entity.BaseTableEntity">
             <result property="id" column="id"/>
             <result property="name" column="name"/>
             <result property="fcu" column="fcu"/>
@@ -162,7 +162,7 @@
             </if>
     </sql>
 
-    <select id="getById" resultType="cn.net.mayh.indicator.po.BaseTablePO">
+    <select id="getById" resultType="cn.net.mayh.indicator.entity.BaseTableEntity">
         select
         <trim prefix="" prefixOverrides=",">
             <include refid="sql_query_column_list"/>
@@ -171,7 +171,7 @@
         where id = #{id}
     </select>
 
-    <select id="get" resultType="cn.net.mayh.indicator.po.BaseTablePO">
+    <select id="get" resultType="cn.net.mayh.indicator.entity.BaseTableEntity">
         select
         <trim prefix="" prefixOverrides=",">
             <include refid="sql_query_column_list"/>
@@ -183,7 +183,7 @@
     </select>
 
 
-    <select id="findList" resultType="cn.net.mayh.indicator.po.BaseTablePO">
+    <select id="findList" resultType="cn.net.mayh.indicator.entity.BaseTableEntity">
         select
         <trim prefix="" prefixOverrides=",">
             <include refid="sql_query_column_list"/>
@@ -195,7 +195,7 @@
         </where>
     </select>
 
-    <select id="findAllList" resultType="cn.net.mayh.indicator.po.BaseTablePO">
+    <select id="findAllList" resultType="cn.net.mayh.indicator.entity.BaseTableEntity">
         select
         <trim prefix="" prefixOverrides=",">
             <include refid="sql_query_column_list"/>

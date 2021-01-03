@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 //加载springBoot运行环境
 @SpringBootTest(
-        classes = BootStrap.class,
+        classes = DevBootStrap.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @ActiveProfiles("local")

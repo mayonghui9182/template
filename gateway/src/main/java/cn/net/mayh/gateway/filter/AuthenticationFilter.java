@@ -2,7 +2,7 @@ package cn.net.mayh.gateway.filter;
 
 import cn.net.mayh.gateway.common.MDA;
 import cn.net.mayh.gateway.common.TokenInfo;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;

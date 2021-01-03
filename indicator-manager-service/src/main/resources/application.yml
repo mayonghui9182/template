@@ -1,5 +1,14 @@
+server:
+  servlet:
+      context-path: /indicator-manager-service
+  #设定http header的最大值  2 mb 解决 jwt 放入header 时 java.lang.IllegalArgumentException: Request header is too large 异常
+  max-http-header-size: 2097152
+  port: 8084
 spring:
   profiles:
     active:
-#      - autoTest
       - local
+  application:
+    name: indicator-manager-service
+  devtools:
+    add-properties: false

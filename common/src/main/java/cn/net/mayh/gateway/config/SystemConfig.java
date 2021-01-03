@@ -17,6 +17,4 @@ import org.springframework.stereotype.Component;
 public class SystemConfig {
     @Value("${system.file_root}")
     private String fileRoot;
-    @Value("${system.dict_cache_time}")
-    private String dictCacheTime;
 }

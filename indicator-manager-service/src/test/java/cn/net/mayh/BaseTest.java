@@ -3,7 +3,7 @@ package cn.net.mayh;
 import cn.net.mayh.dto.ResultDto;
 import cn.net.mayh.exception.BizException;
 import cn.net.mayh.exception.ExceptionEnum;
-import cn.net.mayh.indicator.BootStrap;
+import cn.net.mayh  .IndicatorBootStrap;
 import cn.net.mayh.util.JSONUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,7 +31,7 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 //加载springBoot运行环境
 @SpringBootTest(
-        classes = BootStrap.class,
+        classes = IndicatorBootStrap.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @ActiveProfiles("local")

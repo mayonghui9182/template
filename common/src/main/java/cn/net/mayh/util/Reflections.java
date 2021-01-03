@@ -4,8 +4,8 @@
 package cn.net.mayh.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 import org.springframework.util.Assert;
 
 import java.lang.reflect.*;
@@ -145,7 +145,7 @@ public class Reflections {
      */
     public static Field getAccessibleField(final Object obj, final String fieldName) {
         Validate.notNull(obj, "object can't be null");
-        Validate.notBlank(fieldName, "fieldName can't be blank");
+        Validate.notEmpty(fieldName, "fieldName can't be blank");
         for (Class<?> superClass = obj.getClass(); superClass != Object.class; superClass = superClass.getSuperclass()) {
             try {
                 Field field = superClass.getDeclaredField(fieldName);
@@ -169,7 +169,7 @@ public class Reflections {
     public static Method getAccessibleMethod(final Object obj, final String methodName,
                                              final Class<?>... parameterTypes) {
         Validate.notNull(obj, "object can't be null");
-        Validate.notBlank(methodName, "methodName can't be blank");
+        Validate.notEmpty(methodName, "methodName can't be blank");
 
         for (Class<?> searchType = obj.getClass(); searchType != Object.class; searchType = searchType.getSuperclass()) {
             try {
@@ -193,7 +193,7 @@ public class Reflections {
      */
     public static Method getAccessibleMethodByName(final Object obj, final String methodName) {
         Validate.notNull(obj, "object can't be null");
-        Validate.notBlank(methodName, "methodName can't be blank");
+        Validate.notEmpty(methodName, "methodName can't be blank");
 
         for (Class<?> searchType = obj.getClass(); searchType != Object.class; searchType = searchType.getSuperclass()) {
             Method[] methods = searchType.getDeclaredMethods();

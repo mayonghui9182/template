@@ -1,49 +1,20 @@
-
 eureka:
   client:
-    ## 关闭心跳检测
-    registerWithEureka: false
-    fetchRegistry: false
-
-
-
-ikfa:
-  file-upload:
-   path: E:/work/sys_project/sys-manege-new/sys-manager/sys-admin-pages/
-  refresh:
-   resource:
-     cron: 0 0/30 *  * * ?
-  security:
-    authentication:
-      appCode: INFO_DISCLOSURE
-      path: /login
-      refresh: /refresh/token
-      # 生产环境应当适当裁剪
-      permiturl: /, /*.html, /favicon.ico, /**/*.html, /**/*.css, /**/*.js,/refresh/token,/h2-console,/api/v1/login,/getVlidateCode
-      jwt:
-        iss: taikang
-        header: token
-        secret: my-secret-token-to-change-in-production
-        # Token is valid 24 hours
-        token-validity-in-seconds: 86400
-        token-validity-in-seconds-for-remember-me: 2592000
-    swagger-ui:
-      test:
-        # 是否开启swagger-ui页面测试功能  ture 开启，false 关闭 生产环境应该关闭
-        enable: false
-        # 开启swagger-ui页面测试功能时模拟的 token
-        #mocktoken: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXNhZG1pbiIsImF1ZCI6IndlYiIsImF1dGgiOiJhZG1pbixtYWluaW5kZXg6bWFpbmluZGV4MTphZGQsc3lzdGVtOnVzZXI6YWRkLHN5c3RlbTp1c2VyOmVkaXQsc3lzdGVtOnVzZXI6ZGVsLHN5c3RlbTp1c2VyOnVzZXJyb2xlbWFuYWdlLHN5c3RlbTptZW51OmFkZCxzeXN0ZW06bWVudTplZGl0LHN5c3RlbTptZW51OmRlbCxzeXN0ZW06cm9sZTphZGQsc3lzdGVtOnJvbGU6ZWRpdCxzeXN0ZW06cm9sZTpkZWwsc3lzdGVtOnJvbGU6cm9sZW1lbnVtYW5hZ2UiLCJpc3MiOiJ0YWlrYW5nIiwiZXhwIjozMzE5NTk0Nzk1LCJ1c2VyIjoie1wiYWNjb3VudE5vbkV4cGlyZWRcIjp0cnVlLFwiYWNjb3VudE5vbkxvY2tlZFwiOnRydWUsXCJhdXRob3JpdGllc1wiOlt7XCJhdXRob3JpdHlcIjpcImFkbWluXCJ9LHtcImF1dGhvcml0eVwiOlwibWFpbmluZGV4Om1haW5pbmRleDE6YWRkXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOnVzZXI6YWRkXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOnVzZXI6ZWRpdFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTp1c2VyOmRlbFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTp1c2VyOnVzZXJyb2xlbWFuYWdlXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOm1lbnU6YWRkXCJ9LHtcImF1dGhvcml0eVwiOlwic3lzdGVtOm1lbnU6ZWRpdFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTptZW51OmRlbFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTpyb2xlOmFkZFwifSx7XCJhdXRob3JpdHlcIjpcInN5c3RlbTpyb2xlOmVkaXRcIn0se1wiYXV0aG9yaXR5XCI6XCJzeXN0ZW06cm9sZTpkZWxcIn0se1wiYXV0aG9yaXR5XCI6XCJzeXN0ZW06cm9sZTpyb2xlbWVudW1hbmFnZVwifV0sXCJjcmVkZW50aWFsc05vbkV4cGlyZWRcIjp0cnVlLFwiZW1haWxcIjpcIlwiLFwiZW5hYmxlZFwiOnRydWUsXCJpZFwiOlwiMTM1NFwiLFwicGFzc3dvcmRcIjpcIiQyYSQxMCQzM2hzVGp2UFcvcVQ1S2o0bFFlRVZ1aWEybHlFWFVBRjJzOThmQU5kLzVSaVBJd1lzN1VrS1wiLFwidWNvZGVcIjpcInN5c2FkbWluXCIsXCJ1aWRcIjpcIjEzNTRcIixcInVuYW1lXCI6XCJzeXNhZG1pblwiLFwidXNlcm5hbWVcIjpcInN5c2FkbWluXCJ9IiwiaWF0IjoxNTA3NzA4Mzk1fQ.ziuf_Hqp1eAMxLvJd3kTsA8sh9eo6c1tx4KOWImuH6DUkTh9uGErNCfRcsW5JPU56PAI_MtHdoEC-UOKu9A6Gg
-        mocktoken: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoZWd1b2hhaSIsImF1ZCI6IndlYiIsImF1dGgiOiJpbmZvcmV2ZWFsUm9sZSIsImlzcyI6InRhaWthbmciLCJleHAiOjM2MTU2MjU1MDg4NSwidXNlciI6IntcImFjY291bnROb25FeHBpcmVkXCI6dHJ1ZSxcImFjY291bnROb25Mb2NrZWRcIjp0cnVlLFwiYXBwSW5mb1wiOlt7XCJhcHBDb2RlXCI6XCJJTkZPX0RJU0NMT1NVUkVcIixcImFwcElkXCI6NCxcImFwcE5hbWVcIjpcIuS_oeaBr-aKq-mcslwiLFwicm9sZXNcIjpbXCJpbmZvcmV2ZWFsUm9sZVwiXSxcInNlcnZpY2VUZWFtXCI6W1wiMjlcIixcIjM1XCIsXCIyN1wiLFwiMjhcIl19XSxcImF1dGhvcml0aWVzXCI6W3tcImF1dGhvcml0eVwiOlwiaW5mb3JldmVhbFJvbGVcIn1dLFwiY29tcGFueUlkXCI6XCIwMDEwMDFcIixcImNvbXBhbnlOYW1lXCI6XCLljJfkuqzliIblhazlj7hcIixcImNyZWRlbnRpYWxzTm9uRXhwaXJlZFwiOnRydWUsXCJlbmFibGVkXCI6dHJ1ZSxcInVzZXJDb2RlXCI6XCJoZWd1b2hhaVwiLFwidXNlcklkXCI6ODAsXCJ1c2VybmFtZVwiOlwi5L2V5Zu95rW3XCIsXCJ2YWxpZFRpbWVcIjozNjAwMDAwMDAwMDB9IiwiaWF0IjoxNTYyNTUwODg1fQ.6GHyoWvajQtFj_DFHZVVvs-iBlv-le3UfXnhQ6SZ2w5hjROnE3xuKFhl4RyPEPxhsfitoi5x4cex_EWGx6z_pw
-redis:
-  hostName: 10.130.209.11
-  password: taikang
-  port: 6379
-  maxWaitMillis: -1
-  lifo: true
-  minEvictableIdleTimeMillis: 1800000
-  testOnBorrow: true
-  testWhileIdle: true
-  timeBetweenEvictionRunsMillis: -1
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    instance-id: indicator #此实例注册到eureka服务端的唯一的实例ID
+    prefer-ip-address: true #是否显示IP地址
+    leaseRenewalIntervalInSeconds: 10 #eureka客户需要多长时间发送心跳给eureka服务器，表明它仍然活着,默认为30 秒 (与下面配置的单位都是秒)
+    leaseExpirationDurationInSeconds: 30 #Eureka服务器在接收到实例的最后一次发出的心跳后，需要等待多久才可以将此实例删除，默认为90秒
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 app:
   jdbc_url: jdbc:mysql://192.168.1.102:3306/mayh?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
@@ -57,20 +28,9 @@ app:
   testOnReturn: false
   # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
   testWhileIdle: true
-  validationQuery: SELECT 1 FROM DUAL
-  initialSize: 10
-  maxActive:  50
-
+  validationQuery: SELECT 1
+  initialSize: 30
+  maxActive:  100
 
 system:
-  file_root: D:\work\
-  dict_cache_time: 3600
-
-logging:
-  config: classpath:logs/logback-local.xml
-
-spring:
-  data:
-    mongodb:
-      uri: mongodb://tms:dev666@10.137.24.6:27017/tktms
-
+  file_root: D://

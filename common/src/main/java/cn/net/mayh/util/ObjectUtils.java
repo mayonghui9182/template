@@ -1,9 +1,9 @@
 package cn.net.mayh.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.BeanUtils;
 
 import java.io.ByteArrayInputStream;
@@ -18,7 +18,7 @@ import java.util.*;
  * 对象操作工具类
  */
 @Slf4j
-public class ObjectUtils extends org.apache.commons.lang3.ObjectUtils {
+public class ObjectUtils {
 
     /**
      * 转换为Double类型
@@ -69,7 +69,7 @@ public class ObjectUtils extends org.apache.commons.lang3.ObjectUtils {
      * 转换为字符串
      */
     public static String toString(final Object obj) {
-        return toString(obj, org.apache.commons.lang3.StringUtils.EMPTY);
+        return toString(obj, StringUtils.EMPTY);
     }
 
     /**
@@ -90,7 +90,7 @@ public class ObjectUtils extends org.apache.commons.lang3.ObjectUtils {
      * @return 返回转换后的值
      */
     public static String toStringIgnoreNull(final Object val) {
-        return ObjectUtils.toStringIgnoreNull(val, org.apache.commons.lang3.StringUtils.EMPTY);
+        return ObjectUtils.toStringIgnoreNull(val, StringUtils.EMPTY);
     }
 
     /**

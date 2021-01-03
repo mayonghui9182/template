@@ -27,7 +27,6 @@ import java.util.Properties;
  **/
 @Configuration
 @AutoConfigureAfter(DataSourceConfig.class)
-@DependsOn("appDataSource")
 public class MybatisConfig implements TransactionManagementConfigurer {
 
 

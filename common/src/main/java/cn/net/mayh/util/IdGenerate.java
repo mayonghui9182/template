@@ -1,7 +1,8 @@
 
 package cn.net.mayh.util;
 
-import org.apache.commons.lang3.StringUtils;
+
+import org.apache.commons.lang.StringUtils;
 
 import java.security.SecureRandom;
 import java.util.UUID;

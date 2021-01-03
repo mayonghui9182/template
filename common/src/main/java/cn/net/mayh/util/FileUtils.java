@@ -1019,7 +1019,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
             }
 
             //文件重命名
-            String fileEnd = "" + new Random().nextInt(9999) + new Date().getTime();
+            String fileEnd = "" + new Random().nextInt(9999) + System.currentTimeMillis();
 
             //创建文件
             File uploadFile = new File(realPath + "/" + fileEnd + suffix);

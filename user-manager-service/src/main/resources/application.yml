@@ -1,9 +1,13 @@
+server:
+  servlet:
+      context-path: /user-manager-service
+  #设定http header的最大值  2 mb 解决 jwt 放入header 时 java.lang.IllegalArgumentException: Request header is too large 异常
+  max-http-header-size: 2097152
+  port: 8083
 spring:
   profiles:
     active:
-#      - autoTest
       - local
-spring:
 # Spring Security 配置项，对应 SecurityProperties 配置类
   security:
   # 配置默认的 InMemoryUserDetailsManager 的用户账号与密码。
@@ -11,3 +15,44 @@ spring:
       name: mayh # 账号
       password: 123456 # 密码
       roles: ADMIN # 拥有角色
+  application:
+    name: user-manager-service
+  devtools:
+    add-properties: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    instance-id: gateway #此实例注册到eureka服务端的唯一的实例ID
+    prefer-ip-address: true #是否显示IP地址
+    leaseRenewalIntervalInSeconds: 10 #eureka客户需要多长时间发送心跳给eureka服务器，表明它仍然活着,默认为30 秒 (与下面配置的单位都是秒)
+    leaseExpirationDurationInSeconds: 30 #Eureka服务器在接收到实例的最后一次发出的心跳后，需要等待多久才可以将此实例删除，默认为90秒
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+app:
+  jdbc_url: jdbc:mysql://192.168.1.102:3306/mayh?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+  jdbc_username: root
+  jdbc_password: mayh@123
+  jdbc_driverClass: com.mysql.jdbc.Driver
+  maxPoolPreparedStatementPerConnectionSize: 50
+  # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+  testOnBorrow: false
+  # 归还连接时执行validationQuery检测连接是否有效
+  testOnReturn: false
+  # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+  testWhileIdle: true
+  validationQuery: SELECT 1
+  initialSize: 30
+  maxActive:  100
+
+system:
+  file_root: D://
