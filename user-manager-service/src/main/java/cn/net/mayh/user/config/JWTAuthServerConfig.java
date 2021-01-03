@@ -4,6 +4,7 @@ import cn.net.mayh.user.enhancer.JwtTokenEnhancer;
 import cn.net.mayh.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,11 +14,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +41,8 @@ public class JWTAuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private IUserService userService;
-
+    @Autowired
+    private DataSource dataSource;
     @Autowired
     @Qualifier("jwtTokenStore")
     private TokenStore tokenStore;
@@ -74,7 +79,9 @@ public class JWTAuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         //允许表单认证
-        security.allowFormAuthenticationForClients();
+        security.allowFormAuthenticationForClients()
+                // 配置校验token需要带入clientId 和clientSeret配置
+                .checkTokenAccess("isAuthenticated()");;
     }
 
     @Override
@@ -91,29 +98,13 @@ public class JWTAuthServerConfig extends AuthorizationServerConfigurerAdapter {
          *  刷新令牌
          *  http://localhost:8080/oauth/token?grant_type=refresh_token&client_id=client&client_secret=123123&refresh_token=[refresh_token值]
          */
-
-        clients.inMemory()
-                //配置client_id
-                .withClient("client")
-                //配置client-secret
-                .secret(passwordEncoder.encode("123123"))
-                //配置访问token的有效期
-                .accessTokenValiditySeconds(3600)
-                //配置刷新token的有效期
-                .refreshTokenValiditySeconds(864000)
-                //配置redirect_uri，用于授权成功后跳转
-                .redirectUris("http://www.baidu.com")
-                //配置申请的权限范围
-                .scopes("all")
-                /**
-                 * 配置grant_type，表示授权类型
-                 * authorization_code: 授权码
-                 * password： 密码
-                 * client_credentials: 客户端
-                 * refresh_token: 更新令牌
-                 */
-                .authorizedGrantTypes("authorization_code", "password", "refresh_token");
+        clients.withClientDetails(clientDetails());
     }
 
+    @Bean
+    public ClientDetailsService clientDetails() {
+        //读取oauth_client_details表
+        return new JdbcClientDetailsService(dataSource);
+    }
 
 }

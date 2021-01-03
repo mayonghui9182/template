@@ -59,11 +59,7 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 600000
 # 设置 hystrix.shareSecurityContext 属性为true。设置这个值会自动配置一个Hystrix兵法策略会把securityContext从主线程传输到你使用的Hystrix command
 hystrix.shareSecurityContext: true
 
-logging.level:
-    com.taikang: DEBUG
-    org.hibernate: DEBUG
-logging:
-  file: "target/sys-manager-service.log"
+
 
 ikfa: 
   file-upload:

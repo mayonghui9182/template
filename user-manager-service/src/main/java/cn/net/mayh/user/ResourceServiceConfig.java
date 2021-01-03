@@ -19,7 +19,5 @@ public class ResourceServiceConfig extends ResourceServerConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and().requestMatchers().antMatchers("/user/**");
-
-
     }
 }

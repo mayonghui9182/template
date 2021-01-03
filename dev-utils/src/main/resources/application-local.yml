@@ -5,9 +5,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
 
-logging.level:
-    com.taikang: DEBUG
-    org.hibernate: DEBUG
+
 
 ikfa:
   file-upload:

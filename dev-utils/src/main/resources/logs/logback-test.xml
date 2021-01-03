@@ -22,8 +22,4 @@
         <appender-ref ref="Console"/>
         <appender-ref ref="File"/>
     </root>
-    <logger level="debug" name="com.taikang" additivity="false">
-        <appender-ref ref="Console"/>
-        <appender-ref ref="File"/>
-    </logger>
 </configuration>

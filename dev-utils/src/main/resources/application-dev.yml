@@ -38,9 +38,7 @@ eureka:
 #hystrix.shareSecurityContext: true
 #
 #
-logging.level:
-    com.taikang: DEBUG
-    org.hibernate: DEBUG
+
 #logging:
 #  file: "target/sys-manager-service.log"
 #
